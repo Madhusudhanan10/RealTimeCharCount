@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Character Counter</title>
+    <!-- Tailwind CSS CDN LINK-->
+    <link href="
+https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css
+" rel="stylesheet">
+    <style>
+        body {
+            background-image: url(./image/background.jpg);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            margin-top: 10%;
+        }
+        .container{
+            background-image: url(./image/background.jpg);
+            /*background-color:aqua;*/
+            padding: 20px;
+            width: 700px;
+            height: 400px;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+        }
+        #warning {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container border-double border-4 border-indigo-600">
+<h1 class="pb-5 text-white text-2xl">Message Box</h1>
+<textarea id="message" rows="5" cols="97" maxlength="200" class="pb-50" placeholder="Type your message here..." ></textarea>
+<p id="counter" class="text-white text-2xl pt-150" >0/200 characters</p>
+<button class="text-white border-double border-4 border-indigo-600 pb-30  py-2.5 px-5 me-2 mb-2 text-xl font-large text-gray-900 focus:outline-none bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" onclick="document.getElementById('message').value = ''">clear</button>
+<p id="warning" class="text-xl">You have reached the maximum character limit  !!</p>
+</div>
+
+<script>
+    var messageInput = document.getElementById('message');
+    var counterDisplay = document.getElementById('counter');
+    var warningMessage = document.getElementById('warning');
+    var maxChars = 200;
+
+    messageInput.addEventListener('input', () => {
+        var currentLength = messageInput.value.length;
+        counterDisplay.textContent = `${currentLength}/${maxChars} characters`;
+
+        if (currentLength >=maxChars) {
+            warningMessage.style.display = 'block';
+            messageInput.value = messageInput.value.slice(0, maxChars); // Prevent further typing
+            counterDisplay.textContent = `${maxChars}/${maxChars} characters`; // Update counter display
+        } else {
+            warningMessage.style.display = 'none';
+        }
+    });
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
